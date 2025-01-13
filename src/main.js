@@ -56,7 +56,7 @@ ipcMain.on('install-plugin', (event, filePath) => {
         console.log(`Extracted ${fileName} to ${extractPath}`);
 
         // Notify the renderer process
-        event.reply('install-plugin-response', `Plugin ${fileName} extracted successfully to: ${extractPath}`);
+        event.reply('install-plugin-response', `Plugin ${fileName} extracted successfully to: <a href="${extractPath}">${extractPath}</a>`);
     } catch (error) {
         console.error('Error extracting file:', error);
         event.reply('install-plugin-response', 'Failed to extract the plugin file.');
