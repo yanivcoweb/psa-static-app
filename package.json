@@ -1,20 +1,23 @@
 {
   "name": "psa-static-app",
   "version": "1.0.0",
-  "main": "src/main.js",
+  "main": "dist/main.js", 
   "authors": "Yaniv Sasson",
   "description": "A desktop app for managing static WordPress plugins.",
   "scripts": {
-    "start": "electron ."
+    "start": "tsc && electron .",
+    "build": "tsc"
   },
   "dependencies": {
     "adm-zip": "^0.5.9"
   },
   "devDependencies": {
-    "electron": "^25.0.0",
     "@electron-forge/cli": "^6.0.0",
     "@electron-forge/maker-squirrel": "^6.0.0",
-    "@electron-forge/maker-zip": "^6.0.0"
+    "@electron-forge/maker-zip": "^6.0.0",
+    "@types/node": "^22.12.0",
+    "electron": "^25.0.0",
+    "typescript": "^5.7.3"
   },
   "config": {
     "forge": {

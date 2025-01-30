@@ -3,41 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSA Static App</title>
+    <title>PSA - Polytex Service App - offline site</title>
 </head>
 <body>
-    <h1>WordPress Plugin Installer</h1>
-    <form id="plugin-form">
-        <label for="plugin-file">Select Plugin (.zip):</label>
-        <input type="file" id="plugin-file" accept=".zip" required>
-        <button type="submit">Install Plugin</button>
-    </form>
+    <h1>PSA - Polytex Service App - Offline Site</h1>
+    <button id="select-folder-btn">Select Installation Folder</button>
+    <p>Selected Folder: <span id="selected-folder">Not set</span></p>
+    
+    <button id="deploy-btn">Deploy Offline Site</button>
     <p id="status"></p>
-    <script>
-        const { ipcRenderer } = require('electron');
 
-        const form = document.getElementById('plugin-form');
-        const status = document.getElementById('status');
+    <!-- ✅ Add this script to load the renderer process -->
+    <script src="../dist/renderer.js"></script>
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const fileInput = document.getElementById('plugin-file');
-            const file = fileInput.files[0];
-
-            if (file) {
-                console.log('Selected file:', file.path);
-                ipcRenderer.send('install-plugin', file.path); // Send file path to main process
-
-                // Listen for response from the main process
-                ipcRenderer.on('install-plugin-response', (event, message) => {
-                    status.textContent = message; // Display response in the UI
-                    console.log('Response from main process:', message); // Debug log
-                });
-            } else {
-                status.textContent = 'No file selected.';
-            }
-        });
-    </script>
 </body>
 </html>
